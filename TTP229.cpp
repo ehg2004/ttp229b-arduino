@@ -204,7 +204,7 @@ bool TTP229::IsTouch()
 // }	
 
 
-void TTP229::WaitForTouch_WDT()
+void TTP229::WaitForTouch()//_WTD
 {
 	int read = 0 , lvl = 1 ;
 	while(read==0)
