@@ -192,44 +192,44 @@ bool TTP229::IsTouch()
 	yield();
 	return true;
 }
-// void TTP229::WaitForTouch()
-// {
-// 	//#ifndef ESP8266
-// 	while (digitalRead(_sdoPin)); // DV LOW
-// 	while (!digitalRead(_sdoPin)); // DV HIGH
-// 	delayMicroseconds(10); // Tw
-// 	//#else
-// 	//WaitForTouch_WDT();
-// 	//#endif
-// }	
-
-
-void TTP229::WaitForTouch()//_WTD
+void TTP229::WaitForTouch()
 {
-	int read = 0 , lvl = 1 ;
-	while(read==0)
-	{
-		if(lvl == 1)
-			for(int i = 0 ;  lvl && i < 1000; i++)
-			{
-				lvl = (int) (digitalRead(_sdoPin));	// DV LOW
-				delayMicroseconds(10);
-				yield();
-			}
-		else
-		{
-			for(int i = 0 ;  !lvl && i < 1000; i++)
-			{
-				lvl = (int) (digitalRead(_sdoPin));	// DV HIGH
-				delayMicroseconds(10);
-				yield();
-			}
-			if(!lvl)
-			{
-				read = 1;
-			}
-		}
-		delayMicroseconds(100);
-		yield();
-	}
-}
+	//#ifndef ESP8266
+	while (digitalRead(_sdoPin)){yield();}; // DV LOW
+	while (!digitalRead(_sdoPin)){yield();}; // DV HIGH
+	delayMicroseconds(10); // Tw
+	//#else
+	//WaitForTouch_WDT();
+	//#endif
+}	
+
+
+// void TTP229::WaitForTouch()//_WTD
+// {
+// 	int read = 0 , lvl = 1 ;
+// 	while(read==0)
+// 	{
+// 		if(lvl == 1)
+// 			for(int i = 0 ;  lvl && i < 1000; i++)
+// 			{
+// 				lvl = (int) (digitalRead(_sdoPin));	// DV LOW
+// 				//delayMicroseconds(10);
+// 				yield();//WTD
+// 			}
+// 		else
+// 		{
+// 			for(int i = 0 ;  !lvl && i < 1000; i++)
+// 			{
+// 				lvl = (int) (digitalRead(_sdoPin));	// DV HIGH
+// 				//4delayMicroseconds(10);
+// 				yield();
+// 			}
+// 			if(!lvl)
+// 			{
+// 				read = 1;
+// 			}
+// 		}
+// 		delayMicroseconds(100);
+// 		yield();
+// 	}
+// }
